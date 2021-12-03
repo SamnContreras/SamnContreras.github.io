@@ -1,0 +1,402 @@
+*, *::before, *::after {
+    font-family: 'Baloo 2', cursive;
+    font-family: 'Estonia', cursive;
+    font-family: 'Zen Kurenaido', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-light: #F0F3F5;
+    --clr-dark: #232528;
+    --clr-accent: #C42021;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    --fw-reg: 300;
+    --fw-bold: 900;
+
+    --bs: 0.25em 0.25em 075em rgba(0,0,0,.25),
+    0.125em 0.125em 0.25em rgba(0,0,0,.15);
+}
+
+.intro--img {
+    box-shadow: var(--bs);
+}
+
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.25rem;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
+    margin: 0px;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+
+section {
+    padding: 5em 2em;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+strong {
+    font-weight: var(--fw-bold);
+}
+
+:focus {
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+}
+
+.btn {
+    display: inline-block;
+    padding: .5em 2em;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--fw-bold);
+    transition: trasnform 200ms ease-in-out;
+    border:none; 
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+h1, h2, h3 {
+    line-height: 1.1;
+    margin: 0px;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+}
+
+.section--title {
+    margin-bottom: .25em;
+}
+
+.section--title {
+    font-weight: var(--fw-reg);
+}
+
+.section--title strong{
+    display: block;
+}
+
+.section--subtitle {
+    margin: 0px;
+    font-size: var(--fs-h3);
+}
+
+.section--title--intro, .section--subtitle--about {
+    background-color: var(--clr-accent);
+    padding: .25em 1em;
+    margin-bottom: 1em;
+}
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.logo {
+    max-width: 100px;
+}
+
+.menu {
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    transform: translateX(100%);
+    transition: transform 250ms cubic-bezier(.50, 0, .5, 1);
+}
+
+/* Nav Bar */
+
+.nav--list{
+    list-style: none;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav--link {
+    color: inherit;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-h3);
+    text-decoration: none;
+
+}
+
+.nav--link:hover {
+    color: var(--clr-accent);
+}
+
+.nav-toggle {
+    padding: .5em;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 1000;
+}
+
+.nav-open .menu{
+    transform: translateX(0);
+}
+
+.nav-open .nav-toggle {
+    position: fixed;
+}
+
+.nav-open .hamburger {
+    transform: rotate(.625turn);
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(90deg) translateX(-6px);
+}
+
+.nav-open .hamburger::after {
+    opacity: 0;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+}
+
+.hamburger, .hamburger::before, .hamburger::after{
+    background:var(--clr-accent);
+    width: 2em;
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before, .hamburger::after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+
+}
+
+.hamburger::before {
+    top: 6px;
+}
+
+.hamburger::after {
+    bottom: 6px;
+}
+
+/* Home Page */
+
+.intro {
+    position: relative;
+}
+
+@media (min-width: 600px) {
+    .intro {
+        display: grid;
+        width: min-content;
+        margin: 0 auto;
+        grid-column: 1em;
+        grid-template-areas: 
+            "img title"
+            "img subtitle";
+        grid-template-columns: min-content max-content;
+    }
+
+    .intro--img {
+        grid-area: img;
+        min-width: 350px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section--title--intro {
+        align-self: start;
+        grid-column: -1 / 1;
+        grid-row: 2;
+        text-align: right;
+        position: relative;
+        left: -1.5em;
+        width: calc(100% + 1.5em);
+    }
+}
+
+/* My Projects */
+
+.my-projects {
+    background-color: var(--clr-dark);
+    background-image: url(theodor-lundqvist-Vsn5YH9sMeA-unsplash.jpg);
+    background-size: cover;
+    color: var(--clr-light);
+    text-align: center;
+}
+
+.sectioin--title--projects {
+    color: var(--clr-accent);
+    position: relative;
+}
+
+.sectioin--title--projects::after {
+    content: " ";
+    display: block;
+    width: 25%;
+    height: 1px;
+    margin: 0.5em auto 1em;
+    background: var(--clr-light);
+    opacity: .25;
+}
+
+.projects {
+    margin-bottom: 4em;
+}
+
+.project {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+    .projects {
+        display: flex;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .project + .project {
+        margin-left: 2em;
+    }
+}
+
+/* About Me */
+
+.about-me {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-me-img {
+    box-shadow: var(--bs);
+}
+
+@media (min-width: 600px) {
+    .about-me {
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        grid-template-areas: 
+            "title img"
+            "subtitle img"
+            "text img";
+        grid-column-gap: 2em;
+    }
+
+    .section--title--about{
+        grid-area: title;
+
+    }
+
+    .section--subtitle--about {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        position: relative;
+        left: -2em;
+        width: calc(100% + 3em);
+        padding-left: 1.3em;
+        padding-right: calc(200px + 4em);
+    }
+
+    .about-me-img {
+        grid-area: img;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+/* Footer */
+
+footer {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    text-align: center;
+    padding: 1em 0;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-link {
+    font-size: var(--fs-h3);
+    font-weight: var(--bs);
+}
+
+.footer-link:hover {
+    opacity: .7;
+    text-decoration: underline;
+}
+
+
+
+/* projects css */
+
+.portfolio-item-indi {
+    padding: 0 2em 2em;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.portfolio-item-indi p {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
